@@ -7,5 +7,14 @@ That's why the Nuclear Pioneer project moved to a new edition with Teensy 4.1 - 
 
 This repository will keep the firmware files and user manual for the version with Teensy 3.5
 
-Link to 3D model enclosure made by CommieGIR
+Link to the kit order page:
+
+https://www.rhelectronics.store/nuclear-pioneer-mca-multichannel-analyzer-electronic-module-only
+
+Link to the firmware release summary:
+
+https://www.rhelectronics.store/nuclear-pioneer-mca-multichannel-analyzer-firmware-updates
+
+Link to 3D model enclosure made by CommieGIR:
+
 https://www.thingiverse.com/thing:5212845

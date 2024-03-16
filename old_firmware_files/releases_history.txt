@@ -1,0 +1,304 @@
+Previous Firmware Releases:
+
+​
+
+DOWNLOAD FIRMWARE 4.16 HEX file 05/03/2023 for Teensy 3.5
+
+
+What is new in 4.16 firmware:
+
+Introduced new 3+1 Points method for Energy Scale calibration. 
+
+Added more Color Themes to the spectra. To switch the theme toggle encoder to the pointer scrolling and turn it few times toward 0keV direction.
+
+Added Lu-176 to the library of RIID.
+
+Improved Tc-99m detection.
+
+Improved U-235 detection.
+
+Fixed bug with Lu-177 label pop-up under Tc-99m peak.
+
+​
+
+DOWNLOAD FIRMWARE 4.15 HEX file 22/02/2023 for Teensy 3.5
+
+
+
+What is new in 4.15 firmware:
+
+Internal Oscilloscope Menu.
+
+An option to make Software Temperature Correction.
+
+Added support for wiring external temperature sensor. Now you can toggle if to use internal or external temperature sensor.
+
+Fixed freezing bug after re-opening large amount of SD files.
+
+Improved VIEW SPECTRUM menu. Now you can see the CSV file date and time while selecting spectra file.
+
+Added Tc-99m isotope to the library (still in beta).
+
+Improved Co-57 identification.
+
+In Oscilloscope menu added an option to save / restore temperature correction profile
+
+​
+
+​
+
+DOWNLOAD FIRMWARE 4.14 HEX file 04/02/2023 for Teensy 3.5
+
+
+
+What is new in 4.14 firmware:
+
+In scintillation mode added Waterfall Histogram (link1,link2) for energy distribution and CPS intensity estimation. The scale has the same zoom settings as the main MCA window: 512-4096 channels.  Waterfall zoom can be set in the LCD ZOOM X menu.
+
+In scintillation mode added basic identification for Am-241, Cs-137, Ra-226, U-235. Please note, scintillation mode identification does not replace the main MCA RIID mode and has less performance of the identification results compared with the MCA mode. However, it can be a nice add-on along with the new Waterfall Histogram.
+
+Fixed bug in CSV file date. Now the day and month of the recorded CSV spectrum are displayed correctly.
+
+Improved activity calculator. Now it has a better precision function to get efficiency for the selected geometry. You may need to re-calibrate the correction factor in the activity menu.
+
+Improved geometry selection menu. Now the menu scrolling list starts with the previously selected crystal size. 
+
+Fixed a few small bugs in the internal maintenance. 
+
+Added internal test for erratic value or temperature sensor disconnection. Now if the sensor read wasn't completed, the temperature readings will be displayed as "--.-" until the next read try. 
+
+​
+
+DOWNLOAD FIRMWARE 4.13 HEX file 07/06/2022 for Teensy 3.5
+
+
+What is new in 4.13 firmware:
+
+In scintillation mode, the CPS scale is limited to 50000 CPS (50K)
+
+In spectrum mode, added CPS limit threshold alert. If the source activity is too high then spectrum quality is reduced and you will get the alert notice on screen. In that case the spectrum is not reliable. The limit threshold is depending on PMT pulse duration. If you selected the fast MCA mode (default) then the limit is close to 20000 CPS for spectrum, but if you are using pulse with long decay time the threshold is about 1100 CPS. The CPS limit and MCA mode can be toggled through serial monitor service command like: s101 or s102. For default fast MCA send s101, for slow scintillator send s102. Please download the latest PDF manual for more details.
+
+Added support for BLE module BT4502, please see user manual for more details how to connect smartphone to BT4502  
+
+Added serial service command to set BLE module model. s10 for BM71BLE / RN4871; s11 for BT4502
+
+Added support for Teensy 3.6 processor board. Now we publish 2 files for download. Please use the correct HEX for your device update. If you are not sure what type of the processor you have, then probably you have Teensy 3.5. Send service command s12 to get processor name via serial terminal. If you have any doubts please contact us by email. 
+
+Improved algorithm for averaging Geiger Muller CPS.
+
+In scintillation mode, when scintillation probe is physically disconnected and read cps=0, the doserate can be calculated with GM tube CPM.
+
+Added serial monitor service command to toggle Geiger-Muller tube type. Send s13 to toggle tube name. Supported types are: SBM-21(default), SBM-20, LND-7312, Si29-BG
+
+​
+
+DOWNLOAD FIRMWARE 4.12 HEX file 22/04/2022
+
+What is new in 4.12 firmware:
+
+Library is structured into two groups. Now you can set in the RIID f(x) menu what type of the library to use: Industrial/N.O.R.M or Medical. Selected library hint is also shown on the main display as MED or IND. IND/N.O.R.M. includes:Cs-137, Am-241, Co-60, Co-57, Ba-133, Eu-152, Ra-226, Th-232, U-235, K-40  MED includes: I-131, Lu-177, F-18(beta) and following isotopes as it also used in Nuclear Medicine for calibration or procedures: Cs-137, Co-60, Co-57
+
+I-131 assigned to the correct Medical classification.
+
+Fixed false positive detection of I-131 caused by Ba-133 peaks
+
+Fixed false positive detection of Bi-214 caused by Lu-177
+
+Start logo of the device is replaced with a smaller image to free 137kBytes of storage memory for further updates.
+
+Added F-18 511keV to the medical library, currently in beta mode.
+
+Added blink notification for successful identification.
+
+​
+
+DOWNLOAD FIRMWARE 4.11 HEX file 05/04/2022
+
+What is new in 4.11 firmware:
+
+New isotopes added to the library: I-131, Co-57
+
+Improved identification of Co-60
+
+Fixed minor RIID bugs for low activity Ra-226 / Cs-137 
+
+RIID f(x) menu now includes also I-131, Co-57, Co-60 tolerance settings. If one of the isotopes from the library list pop-up with false positive too often, then you can decrease the tolerance %. Set all 0% as the default levels. Correct setting for your probe geometry can be found experimentally, normally tolerance can be set in range +/- 20% for a typical detector.
+
+Added support for the new website browser application:  https://spectrum.nuclearphoenix.xyz/ You can use USB serial connection to view live data uploaded from Nuclear Pioneer to the browser. NuclearPhoenix is very nice online MCA that allows to open CSV spectrum files and support live data logging from a different hardware MCA. You can contact the author of this application through the forum: https://www.geigerzaehlerforum.de/index.php/topic,969.0.html 
+
+
+By default, serial logging is OFF for live data. Nuclear Pioneer uses ";" delimiter for serial logging to make it compatible with the website logging. To toggle live data upload please send serial service command s1818 to the Nuclear Pioneer prior connecting with browser application. You can use Arduino IDE serial terminal or NuclearPhoenix Console to send service command.
+
+​
+
+DOWNLOAD FIRMWARE 4.10 HEX file 21/01/2022
+
+What is new in 4.10 firmware:
+
+Added spectrum line draw mode (LIN or LOG). You can toggle bar / line mode in the new LCD DRAW MODE menu.
+
+Added date&time label in spectrum viewer when file is opened.
+
+Fixed minor bug in printing temperature text during energy scale calibration.
+
+In RIID f(x) menu fixed bug of printing and scrolling percentage values, now you can set +/-75%
+
+In RIID f(x) menu introduced a new function that allows to hide Compton continuum. This function can be useful to identify a shielded N.O.R.M. source in situ analyzing.  
+
+Added BLE command to  control Compton-hide properties  (abstract units, refer user manual).
+
+Added serial monitor command to  control Compton-hide properties  (abstract units, refer user manual).
+
+Fixed bug in monitoring of low battery level.
+
+Improved Cs-137 and Ra-226 identification confidence for 63x63mm and 51x51mm crystals.  The software will perform deeper analyze  for faster identification of low activity / shielded source, however the deep analysis currently programmed only for large volume crystal and may not work correctly if you connect small detector. That's why for better performance of RIID using large crystal is recommended.
+
+ 
+
+ 
+
+DOWNLOAD FIRMWARE 4.09 HEX file 30/12/2021
+
+What is new in 4.09 firmware:
+
+Added Eu-152 isotope to the library
+
+Improved Cs-137 identification in case of weak activity or shielded source behind Compton
+
+Temperature sensor readings moved to the main MCA window
+
+Added RIID f(x) menu for identification tolerance adjustment
+
+ 
+
+ 
+
+DOWNLOAD FIRMWARE 4.08 HEX file 28.10.21
+
+What is new in 4.08 firmware:
+
+Fixed background file load error that was happen after powering off the device
+
+Added more crystal sizes for correct energy compensated doserate (63x63mm, 10x40mm, 40x40mm)
+
+Added activity calculation geometries for 63x63, 40x40, 25x25 and 10x40 crystals
+
+Now you can set your crystal size by selecting correct type of the NaI(Tl) in activity menu, instead sending serial monitor command
+
+Added U-235 to the library. Improved auto-identification.
+
+Added sound notification when activity is calculated or when isotope detected
+
+Added service serial monitor command to set fast/slow scintillator May be useful if you are using slow CsI(Tl) scintillator with SiPM and external pulse shape amplifier.
+
+​
+
+DOWNLOAD FIRMWARE HEX File 23.10.2021
+
+What is new in 4.07 software:
+
+Improved search mode with sound alert for 3 sigma CPS deviation
+
+Introduced activity menu for 51x51mm NaI(Tl) crystal and 3 types of geometry (still in beta mode)
+
+Fixed minor bugs 
+
+Added serial monitor command to get files name list saved on SD card
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 29.09.2021
+
+What is new in 4.06 software:
+
+ Optimized and faster peak detection
+
+ Fixed false positive detection triggering in some scenarios 
+
+ Improved Ba-133 and Lu-177 detection
+
+ Improved Cs-137 FWHM% resolution calculation
+
+ Added 3 minutes warning for warm-up period after power up
+
+ Added energy calibration hints with markers and energies list for the selected scheme
+
+ Added Co-57 I-131 energy calibration scheme
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 03.09.2021
+
+What is new in 4.05 software:
+
+Added second color theme for gamma spectrum with higher contrast. You can switch the spectrum color by making several turns of the encoder pointer toward 0keV direction. The encoder have to be in pointer control mode.
+
+ Added Th-232, Ba-133, Lu-177 isotopes to the auto-detection library
+
+ Added N.O.R.M. mix detection with mixed Ra-226 and Th-232
+
+Improved peak detection
+
+In scint.mode, the counter will make the event beep for every n=100 detected particle for large crystal or for every n=25 detected particle when small crystal is used. You can set crystal size through serial monitor command as described in the manual.
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 31.08.2021
+
+What is new in 4.04 software:
+
+Fixed software freeze caused by erratic energy calibration point
+
+Added detailed information on the boot screen with sound notification regarding wrong / missed energy calibration point
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 19.08.2021
+
+What is new in 4.03 software:
+
+Added FWHM% resolution measure for Cs-137 662keV peak, now you can roll the pointer over Cs-137 photopeak to read resolution.
+
+Added serial command to change LCD backlight PWM frequency because some LCD modules had failure with 25KHz PWM. Now the default PWM is 1KHz and you can change the frequency to any value in range  of 100Hz-25KHz
+
+Fixed bug with RN4871 bluetooth connection that caused spurious BLE commands during application connect.
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 28.07.2021
+
+What is new in 4.02 software:
+
+Added boot screen to allow viewing of all saved constants
+
+Added click sound for Geiger-Muller counter in scintillation mode
+
+Improved averaging procedure of Geiger-Muller CPS counter, now it show the correct result faster
+
+Added serial command to make a training data of isotopes for better and faster identification, see manual for details
+
+Added serial command to set crystal size, 51x51mm or 25x25mm
+
+Improved doserate energy compensation calculation
+
+Fixed bug of non correctly saved mean CPS to eeprom memory
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 13.07.2021
+
+What is new in 4.01 software:
+
+Better and faster Cs-137, Am-241 and Ra-226 RIID detection. Reduced the number of false detection events
+
+Added few BLE commands for calibration through smartphone terminal application, see user manual for more details
+
+Changed starting position of a channel pointer during energy calibration
+
+Minor changes in battery voltage monitoring and initial ADC configuration
+
+ 
+
+DOWNLOAD FIRMWARE HEX File 21.06.2021
+
+Release hex file  4.00
